@@ -9,15 +9,27 @@
 .calculator{
     display: flex;
     flex-direction: column;
+    border: solid #5C5C5C ;
+    border-width: 10px;
+    border-radius: 15px;
 }
 .display{
     background-color: #BED2C2;
+    height: 70px;
+
 }
-.buttons{
+.typing{
+    padding-top: 10px;
     background-color: #5C5C5C;
     display: flex;
     flex-direction: column;
 }
 .row1,.row2,.row3,.row4,.row5{
     display: flex;
+}
+button{
+    background-color: #ECECEC;
+    width:55px;
+    height:40px;
+    border-radius:10%;
 }
