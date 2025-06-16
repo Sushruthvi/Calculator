@@ -1,8 +1,20 @@
+
 .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 96vh;
+
+}
+.calculator{
     display: flex;
     flex-direction: column;
 }
+.display{
+    background-color: #BED2C2;
+}
 .buttons{
+    background-color: #5C5C5C;
     display: flex;
     flex-direction: column;
 }
