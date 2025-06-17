@@ -4,17 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
     <title>Calculator</title>
   </head>
   <body>
     <div class="container">
       <div class="calculator">
-        <div class="display">DUMMY</div>
+        <div class="display" id="display"></div>
         <!-- BUTTONS -->
         <div class="typing">
           <div class="row1">
             <div class="buttons" id="allClear">
-              <button>AC</button>
+              <button style="background-color: #EC2934;">AC</button>
             </div>
             <div class="buttons" id="exp">
               <button>^</button>
@@ -23,7 +25,7 @@
               <button>%</button>
             </div>
             <div class="buttons" id="div">
-              <button>/</button>
+              <button>÷</button>
             </div>
           </div>
           <!-- ROW2 -->
@@ -79,14 +81,15 @@
               <button>0</button>
             </div>
             <div class="buttons" id="decimalPoint">
-              <button>.</button>
+              <button style="font-size: 20px; font-weight: bolder;">.</button>
             </div>
             <div class="buttons" id="equalsTo">
-              <button>=</button>
+              <button style="background-color: #F7A54C; color: #FAF4E4; font-weight: bolder ; font-size: 24px;padding-bottom: 10px;">=</button>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>

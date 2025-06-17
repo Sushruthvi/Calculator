@@ -4,32 +4,52 @@
     justify-content: center;
     align-items: center;
     height: 96vh;
-
 }
 .calculator{
     display: flex;
     flex-direction: column;
-    border: solid #5C5C5C ;
-    border-width: 10px;
+    width:260px;
+    border: solid #5C5C5C;
+    border-width: 15px;
     border-radius: 15px;
-}
+    background-color: #5C5C5C;
+}       
 .display{
     background-color: #BED2C2;
-    height: 70px;
+    height: 55px;
+    width:100%;
+    border:#ECECEC;
+    border-radius: 8px;
+    font-size: 30px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    font-family: 'Orbitron', monospace;
 
 }
-.typing{
-    padding-top: 10px;
+.typing{ 
     background-color: #5C5C5C;
     display: flex;
     flex-direction: column;
-}
+    padding-top: 18px;
+    width: 100%;
+    gap: 10px; 
+    padding-bottom: 10px;
+} 
 .row1,.row2,.row3,.row4,.row5{
     display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 button{
+    font-family: 'Orbitron', monospace;
     background-color: #ECECEC;
     width:55px;
     height:40px;
-    border-radius:10%;
+    border-radius:8px;
+    font-size: 18px;
+}
+#equalsTo{
+    
 }
