@@ -8,8 +8,10 @@ function exponent(a, b) {
   return Math.pow(a, b);
 }
 function divide(a, b) {
-  return (a / b);
+  if (b === 0) return "∞";
+  return a / b;
 }
+
 function modulus(a, b) {
   return a % b;
 }
@@ -41,7 +43,7 @@ for (let btn of button) {
       }
       return; // Stop further processing for this click
     }
-
+  
     // For Allclear
     if (btn.textContent == "AC") {
       display.textContent = "";
@@ -102,7 +104,10 @@ for (let btn of button) {
       }
     }
 
-    function operate(mathExpression) {
+   
+  });
+}
+ function operate(mathExpression) {
       for (let i = 0; i < mathExpression.length; i++) {
         let c = mathExpression[i];
         if (isNaN(c) && c !== ".") {
@@ -125,5 +130,39 @@ for (let btn of button) {
         }
       }
     }
-  });
+document.addEventListener("keydown", function (e) {
+  const key = e.key;
+
+  // Digits and decimal
+  if (!isNaN(key) || key === ".") {
+    simulateButtonClick(key);
+  }
+
+  // Operators
+  if (["+", "-", "*", "/", "%", "^"].includes(key)) {
+    simulateButtonClick(key === "/" ? "÷" : key);
+  }
+
+  // Enter key for '='
+  if (key === "Enter") {
+    simulateButtonClick("=");
+  }
+
+  // Backspace for 'C'
+  if (key === "Backspace") {
+    simulateButtonClick("C");
+  }
+
+  // Escape for All Clear
+  if (key === "Escape") {
+    simulateButtonClick("AC");
+  }
+});
+function simulateButtonClick(value) {
+  for (let btn of button) {
+    if (btn.textContent === value) {
+      btn.click();
+      break;
+    }
+  }
 }
