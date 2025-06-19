@@ -8,7 +8,7 @@ function exponent(a, b) {
   return Math.pow(a, b);
 }
 function divide(a, b) {
-  return a / b;
+  return (a / b).toFixed(2);
 }
 function modulus(a, b) {
   return a % b;
@@ -16,7 +16,7 @@ function modulus(a, b) {
 function multiply(a, b) {
   return a * b;
 }
-let display = document.getElementById("display");
+let display = document.getElementById("display"); 
 let button = document.getElementsByTagName("button");
 let operatorToggle = false; //tells if a operator is present in the display or not
 for (let btn of button) {
@@ -30,7 +30,7 @@ for (let btn of button) {
         if (
           display.textContent.length < 8 &&
           operatorToggle == false &&
-          display.textContent != ""
+          display.textContent != "" && btn.textContent!='='
         ) {
           display.textContent += btn.textContent;
           operatorToggle = true;
@@ -46,6 +46,7 @@ for (let btn of button) {
         operatorToggle = false;
       }
       display.textContent = display.textContent.slice(0, -1);
+      
     }
     // For Allclear
     else if (btn.textContent == "AC") {
