@@ -8,7 +8,7 @@ function exponent(a, b) {
   return Math.pow(a, b);
 }
 function divide(a, b) {
-  return (a / b).toFixed(2);
+  return (a / b);
 }
 function modulus(a, b) {
   return a % b;
@@ -19,45 +19,87 @@ function multiply(a, b) {
 let display = document.getElementById("display"); 
 let button = document.getElementsByTagName("button");
 let operatorToggle = false; //tells if a operator is present in the display or not
+let decimalToggle1=false;
+let decimalToggle2=false;
 for (let btn of button) {
   btn.addEventListener("click", function () {
+    // Handle Clear (C) first so it always works
+    if (btn.textContent == "C") {
+      if (display.textContent.length > 0) {
+        let lastChar = display.textContent[display.textContent.length - 1];
+        if (isNaN(lastChar) && lastChar !== '.') {
+          operatorToggle = false;
+        }
+        if (lastChar === '.') {
+          if (!operatorToggle) {
+            decimalToggle1 = false;
+          } else {
+            decimalToggle2 = false;
+          }
+        }
+        display.textContent = display.textContent.slice(0, -1);
+      }
+      return; // Stop further processing for this click
+    }
+
+    // For Allclear
+    if (btn.textContent == "AC") {
+      display.textContent = "";
+      operatorToggle = false;
+      decimalToggle1 = false;
+      decimalToggle2 = false;
+      return;
+    }
+
+    // for Equalsto
+    if (btn.textContent == "=") {
+      const result = operate(display.textContent);
+      let resultStr = String(result);
+
+      if (resultStr.length <= 9) {
+        display.textContent = resultStr;
+      } else {
+        // Try rounding to 2 decimal places
+        let rounded = Number(result).toFixed(2);
+        if (rounded.length <= 9) {
+          display.textContent = rounded;
+        } else {
+          display.textContent = "Result too big";
+        }
+      }
+      operatorToggle = false;
+      decimalToggle1 = false;
+      decimalToggle2 = false;
+      return;
+    }
+
+    // Only handle input if display is not full
     if (display.textContent.length < 9) {
       // for digits(make the decimal thing here too)
-      if (!isNaN(btn.textContent)) {
-        display.textContent += btn.textContent;
+      if (!isNaN(btn.textContent)||btn.textContent=='.') {
+        if(!isNaN(btn.textContent)){display.textContent += btn.textContent;}
+        if(btn.textContent=='.'){
+        if(operatorToggle==false && decimalToggle1==false){
+          decimalToggle1=true;
+          display.textContent+=btn.textContent;
+        }
+        else if(operatorToggle==true && decimalToggle2==false){
+          decimalToggle2=true;
+          display.textContent+=btn.textContent;
+        }
+   
+      }
         // for operators
       } else {
         if (
           display.textContent.length < 8 &&
           operatorToggle == false &&
-          display.textContent != "" && btn.textContent!='='
+          display.textContent != "" && btn.textContent!='=' && btn.textContent!='.'
         ) {
           display.textContent += btn.textContent;
           operatorToggle = true;
         }
       }
-    }
-    // for Clear
-    if (btn.textContent == "C") {
-      if (
-        isNaN(display.textContent.charAt(display.textContent.length - 1)) ||
-        display.textContent.length == 1
-      ) {
-        operatorToggle = false;
-      }
-      display.textContent = display.textContent.slice(0, -1);
-      
-    }
-    // For Allclear
-    else if (btn.textContent == "AC") {
-      display.textContent = "";
-      operatorToggle = false;
-    }
-    //for Equalsto
-    else if (btn.textContent == "=") {
-      const result = operate(display.textContent);
-      display.textContent = result.toString().length < 9 ? result : "Result too big";
-      operatorToggle=false;
     }
 
     function operate(mathExpression) {
